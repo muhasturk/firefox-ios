@@ -67,7 +67,7 @@ enum LPEvent: String {
     case useReaderView = "E_User_Used_Reader_View"
     case trackingProtectionSettings = "E_Tracking_Protection_Settings_Changed"
     case trackingProtectionMenu = "E_Opened_Tracking_Protection_Menu"
-    case trackingProtectionWhiteList = "E_Added_Site_To_Tracking_Protection_Whitelist"
+    case trackingProtectionSafeList = "E_Added_Site_To_Tracking_Protection_Safelist"
     case fxaSyncedNewDevice = "E_FXA_Synced_New_Device"
     case onboardingTestLoadedTooSlow = "E_Onboarding_Was_Swiped_Before_AB_Test_Could_Start"
 }
@@ -165,7 +165,7 @@ class LeanPlumClient {
     fileprivate func start() {
         guard let settings = getSettings(), isLocaleSupported(), !Leanplum.hasStarted() else {
             enabled = false
-            Sentry.shared.send(message: "LeanplumIntegration - Could not be started | Settings: \(String(describing: getSettings())) | isLocaleSupported: \(isLocaleSupported()) | Leanplum has not started: \(!Leanplum.hasStarted())")
+            Sentry.shared.send(message: "LeanplumIntegration - Could not be started | isLocaleSupported: \(isLocaleSupported()) | Leanplum has not started: \(!Leanplum.hasStarted())")
             log.error("LeanplumIntegration - Could not be started")
             return
         }
